@@ -144,7 +144,8 @@ int main ()
 	 	"Escolha a opção desejada do menu:\n\n"
 		 "\t1 - Registrar nomes\n"
 		 "\t2 - Consultar nomes\n"
-		 "\t3 - Deletar nomes\n\n"
+		 "\t3 - Deletar nomes\n"
+		 "\t4 - Sair\n\n"
 		);
 		printf ("Opção: ");
 	
@@ -164,6 +165,11 @@ int main ()
 			
 			case 3:
 			deletar();
+			break;
+			
+			case 4:
+			printf("Até a proxima!\n");
+			return 0;
 			break;
 			
 			default:  //para qualquer outra opção inserida 
