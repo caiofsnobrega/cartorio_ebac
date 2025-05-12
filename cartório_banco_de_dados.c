@@ -5,11 +5,13 @@
 
 int registro()
 {
+
 	char arquivo[40];
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
+	int opcao = 0;
 	
 	printf("Digite o CPF a ser cadastrado: ");
 	scanf("%s", cpf); //vai armazenar o cpf digitado em uma variável do tipo string, por isso o %s (string são conjuntos de chars(caracteres))
@@ -62,8 +64,33 @@ int registro()
 	fprintf(file, cargo);
 	fclose(file);
 	
+	printf("\nUsuário cadastrado com sucesso\n\n");
 	
-	system("pause");
+	printf
+		(
+			"Deseja cadastrar mais um usuário?\n"
+			"Sim - Digite 1\n"
+			"Não - Digite 2\n"
+		);
+	
+    scanf("%i", &opcao);
+	
+	switch(opcao)
+			{
+				case 1:  
+				system("cls");
+				registro();
+				break;
+			
+				case 2:
+				break;
+			
+				default: 
+				printf("Esta opção não está disponível\n\n");
+				system("pause");
+				break;
+			}
+			
 }
 
 int consulta()
@@ -131,51 +158,74 @@ int main ()
 {
 	int opcao=0;  //criação da variável chamada de opcao
 	int x = 1;  //criação da variável x para usar na função "for" abaixo
+	char senhadigitada[10]="a"; //criação da variável para o usuário inserir cadastrar uma senha
+	int comparacao; //variável para usar na validação da senha
 	
-	for(x=1; x=1;)  //função "for" usada para que o programa sempre volte para o menu de opções
+	//codigo para o logine senha:
+	printf("### Cartório da EBAC ###\n\n");
+	printf("Login de administrador\n\nDigite sua senha: ");
+	scanf("%s",senhadigitada);
+	
+	comparacao = strcmp(senhadigitada, "admin"); //strcmp serve para comparar valores de strings (no caso admin é a senha que o usuario registrou)
+	
+	//Toda a int(main) fica dentro do if porque o programa só pode rodar se a senha corresponder
+	
+	if(comparacao == 0) //quando a senha bate o computador entende que os valores atribuídos para a comparação resultam em zero, por isso o ==0
 	{
 	
-		system("cls");  //função de limpar a tela
+		system("cls");
 	
-		setlocale(LC_ALL, "Portuguese");
-	
-		printf
-		("### Cartório da EBAC ###\n\n"
-	 	"Escolha a opção desejada do menu:\n\n"
-		 "\t1 - Registrar nomes\n"
-		 "\t2 - Consultar nomes\n"
-		 "\t3 - Deletar nomes\n"
-		 "\t4 - Sair\n\n"
-		);
-		printf ("Opção: ");
-	
-		scanf("%d", &opcao);  //armazena na variável "opcao" o valor que o usuário inserir
-	
-		system("cls");  //depois que o ususário digitar o valor, o programa vai esconder todas as mensagens anteriores do menu
-		
-		switch(opcao)
+		for(x=1; x=1;)  //função "for" usada para que o programa sempre volte para o menu de opções
 		{
-			case 1:  //caso a variável for 1...
-			registro();
-			break; 
+	
+			system("cls");  //função de limpar a tela
+	
+			setlocale(LC_ALL, "Portuguese");
+	
+			printf
+			("### Cartório da EBAC ###\n\n"
+	 		"Escolha a opção desejada do menu:\n\n"
+			 "\t1 - Registrar nomes\n"
+			 "\t2 - Consultar nomes\n"
+			 "\t3 - Deletar nomes\n"
+			 "\t4 - Sair\n\n"
+			);
+			printf ("Opção: ");
+	
+			scanf("%d", &opcao);  //armazena na variável "opcao" o valor que o usuário inserir
+	
+			system("cls");  //depois que o ususário digitar o valor, o programa vai esconder todas as mensagens anteriores do menu
 			
-			case 2:
-			consulta();
-			break;
+			switch(opcao)
+			{
+				case 1:  //caso a variável for 1...
+				registro();
+				break; 
 			
-			case 3:
-			deletar();
-			break;
+				case 2:
+				consulta();
+				break;
 			
-			case 4:
-			printf("Até a proxima!\n");
-			return 0;
-			break;
+				case 3:
+				deletar();
+				break;
 			
-			default:  //para qualquer outra opção inserida 
-			printf("Esta opção não está disponível\n\n");
-			system("pause");
-			break;
-		}		
+				case 4:
+				printf("Até a proxima!\n");
+				return 0;
+				break;
+			
+				default:  //para qualquer outra opção inserida 
+				printf("Esta opção não está disponível\n\n");
+				system("pause");
+				break;
+			}		
+		}
 	}
+	
+	else
+		printf("Senha incorreta!\n\n");
+		system("pause");
+		system("cls");
+		main();
 }
